@@ -1,8 +1,8 @@
 streamlit
-ultralytics
-qdrant-client
-transformers
-torch
-matplotlib
-pillow
+torch==2.0.0
 opencv-python-headless==4.5.3.56
+pillow
+ultralytics==8.0.15
+qdrant-client==0.11.0
+transformers==4.26.0
+matplotlib
