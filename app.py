@@ -4,7 +4,6 @@ import torch
 import numpy as np
 from PIL import Image
 import streamlit as st
-import matplotlib.pyplot as plt
 from ultralytics import YOLO
 from qdrant_client import QdrantClient
 from transformers import CLIPProcessor, CLIPModel
@@ -47,7 +46,10 @@ def search_similar_items(query_image, client, collection_name):
     return search_result[0], search_result[1]
 
 # Function to process detection and cropping
-def detect_and_crop(image):
+def detect_and_crop(image_file):
+    # Load image using PIL from file-like object
+    image = Image.open(image_file).convert('RGB')
+    
     results = model(image)
     for result in results:
         boxes = result.boxes.xyxy.cpu().detach().numpy()
@@ -55,13 +57,13 @@ def detect_and_crop(image):
         scores = result.boxes.conf.cpu().detach().numpy()
 
         threshold = 0.3
-        for i, label in enumerate(labels):
-            if scores[i] >= threshold:
+        for i, score in enumerate(scores):
+            if score >= threshold:
                 x1, y1, x2, y2 = map(int, boxes[i])
-                im_crop = Image.open(image).convert('RGB').crop((x1, y1, x2, y2))
+                im_crop = image.crop((x1, y1, x2, y2))
                 return im_crop
 
-    st.write(f"No target objects detected.")
+    st.write("No target objects detected.")
     return None
 
 # Streamlit UI
@@ -73,11 +75,7 @@ if uploaded_file is not None:
     st.image(uploaded_file, caption='Uploaded Image', use_column_width=True)
     
     # Process image
-    with open(uploaded_file.name, 'wb') as f:
-        f.write(uploaded_file.getbuffer())
-    
-    image_path = uploaded_file.name
-    cropped_image = detect_and_crop(image_path)
+    cropped_image = detect_and_crop(uploaded_file)
     
     if cropped_image:
         top_1, top_2 = search_similar_items(cropped_image, qdrant_client, collection_name)
