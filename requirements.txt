@@ -1,9 +1,9 @@
 streamlit
-torch==2.4.0
+torch>=2.3.0
 opencv-python-headless==4.8.0.76
 pillow
 ultralytics
-qdrant-client==0.11.0
+qdrant-client==0.10.0
 transformers==4.26.0
 matplotlib
 numpy==1.25.0
