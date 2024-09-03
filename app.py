@@ -8,7 +8,7 @@ import torch
 import matplotlib.pyplot as plt
 
 # Load your YOLOv8 model
-model = YOLO('/content/drive/MyDrive/drug/best_new.pt')
+model = YOLO('model.pt')
 
 # Connect to Qdrant
 qdrant_client = QdrantClient(
