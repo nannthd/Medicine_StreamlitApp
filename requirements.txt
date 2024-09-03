@@ -1,4 +1,4 @@
-pip install -r requirements.txt
+pip install --upgrade pip
 
 streamlit
 torch==2.4.0
