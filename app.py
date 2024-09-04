@@ -13,10 +13,10 @@ model = YOLO('model.pt')
 
 # Connect to Qdrant
 qdrant_client = QdrantClient(
-    url="https://8366dca9-9b40-481c-9a7c-102b62b118c2.europe-west3-0.gcp.cloud.qdrant.io:6333",
-    api_key="Ft3t6L99uoTsJW8IOk5VH2byKU-BQYqiieuxXFBDp99wo75od0ddAw"
+    url = "https://a63ffbf5-5568-46dd-9ec3-98751a51a998.us-east4-0.gcp.cloud.qdrant.io:6333",
+    api_key = "S0QgrdtYHTC8f_53Nes2uJ4gWoxbPnIwkujhfRlwcWA_MOvuGseLXw"
 )
-collection_name = "vector_CLIP"
+collection_name = "medicine50classClipModel"
 
 # Load CLIPModel and processor for embedding generation
 clip_model_name = "openai/clip-vit-large-patch14"
