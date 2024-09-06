@@ -2,7 +2,7 @@ numpy
 Pillow
 torch
 transformers
-opencv-python
+opencv-python==4.5.5.64
 ultralytics
 qdrant-client
 streamlit
