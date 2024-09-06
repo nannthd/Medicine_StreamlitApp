@@ -104,7 +104,7 @@ st.title("Medicine Image Processing")
 
 # Upload Image
 uploaded_file = st.file_uploader("Upload an Image", type=["jpg", "jpeg", "png"])
-unseenmedicine_folder = r"C:\Users\Admin\Documents\INET\Drug\Medicine_StreamlitApp\unseenmedicine"
+unseenmedicine_folder = "unseenmedicine"
 
 if uploaded_file is not None:
     image_path = uploaded_file.name
