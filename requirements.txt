@@ -1,5 +1,5 @@
-torch==1.12.1
-torchvision==0.13.1
+torch==2.4.0
+torchvision==0.15.2
 opencv-python-headless==4.5.3.56
 ultralytics==8.0.20
 qdrant-client==0.10.0
