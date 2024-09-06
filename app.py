@@ -14,7 +14,7 @@ from tempfile import NamedTemporaryFile
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = CLIPModel.from_pretrained("openai/clip-vit-large-patch14").to(device)
 processor = CLIPProcessor.from_pretrained("openai/clip-vit-large-patch14")
-yolo_model_path = "best_segment.pt"  # Upload the model to the app directory or load from a URL
+yolo_model_path = "best_segment.pt"  # Ensure this file is in the Streamlit app directory
 model_detection = YOLO(yolo_model_path)
 model_segmentation = YOLO(yolo_model_path)
 
