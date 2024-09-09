@@ -13,7 +13,7 @@ import streamlit as st
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = CLIPModel.from_pretrained("openai/clip-vit-large-patch14").to(device)
 processor = CLIPProcessor.from_pretrained("openai/clip-vit-large-patch14")
-yolo_model_path = r"C:\Users\Admin\Documents\INET\Drug\Medicine_StreamlitApp\best_segment.pt"
+yolo_model_path = "model.pt"
 model_detection = YOLO(yolo_model_path)
 model_segmentation = YOLO(yolo_model_path)
 qdrant_url = "https://a63ffbf5-5568-46dd-9ec3-98751a51a998.us-east4-0.gcp.cloud.qdrant.io:6333"
