@@ -8,17 +8,14 @@ import cv2
 from ultralytics import YOLO
 from qdrant_client import QdrantClient
 import streamlit as st
-from tempfile import NamedTemporaryFile
 
 # Initialize the models and Qdrant client (using your existing setup)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = CLIPModel.from_pretrained("openai/clip-vit-large-patch14").to(device)
 processor = CLIPProcessor.from_pretrained("openai/clip-vit-large-patch14")
-yolo_model_path = "best_segment.pt"  # Ensure this file is in the Streamlit app directory
+yolo_model_path = r"C:\Users\Admin\Documents\INET\Drug\Medicine_StreamlitApp\best_segment.pt"
 model_detection = YOLO(yolo_model_path)
 model_segmentation = YOLO(yolo_model_path)
-
-# Initialize Qdrant client
 qdrant_url = "https://a63ffbf5-5568-46dd-9ec3-98751a51a998.us-east4-0.gcp.cloud.qdrant.io:6333"
 api_key = "S0QgrdtYHTC8f_53Nes2uJ4gWoxbPnIwkujhfRlwcWA_MOvuGseLXw"
 collection_name = "medicine50classClipModel1.1"
@@ -107,13 +104,13 @@ st.title("Medicine Image Processing")
 
 # Upload Image
 uploaded_file = st.file_uploader("Upload an Image", type=["jpg", "jpeg", "png"])
-unseenmedicine_folder = "unseenmedicine"  # Use a temporary folder for unseen medicines
+unseenmedicine_folder = r"C:\Users\Admin\Documents\INET\Drug\Medicine_StreamlitApp\unseenmedicine"
 
 if uploaded_file is not None:
+    image_path = uploaded_file.name
     # Save the uploaded file temporarily
-    with NamedTemporaryFile(delete=False) as temp_file:
-        temp_file.write(uploaded_file.getbuffer())
-        image_path = temp_file.name
+    with open(image_path, "wb") as f:
+        f.write(uploaded_file.getbuffer())
     
     # Display the uploaded image
     col1, col2 = st.columns(2)
